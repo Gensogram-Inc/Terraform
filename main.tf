@@ -119,7 +119,7 @@ resource "aws_instance" "gensogram_server" {
 #   http_method             = aws_api_gateway_method.post_method.http_method
 #   integration_http_method = "POST"
 #   type                    = "HTTP"
-#   uri                     = "https://hooks.slack.com/services/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"  # Replace with your Slack Webhook URL
+#   uri                     = "https://hooks.slack.com/services/AAAAAAAAAAAA"  # Replace with your Slack Webhook URL
 
 #   request_templates = {
 #     "application/json" = <<EOF
