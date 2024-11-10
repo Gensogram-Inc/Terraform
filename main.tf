@@ -8,8 +8,8 @@ terraform {
 
   required_version = ">= 1.2.0"
   backend "s3" {
-    bucket         = "kunle-terraform-state-bucket"    # Replace with your S3 bucket name
-    key            = "Terraform/terraform.tfstate"  # Adjust the key (path) as needed
+    bucket         = "gensogram-terraform-state-bucket"    # Replace with your S3 bucket name
+    key            = "Terraform/terraform.tfstate" # Adjust the key (path) as needed
     region         = "us-east-1"
     dynamodb_table = "gensogram-terraform-state-lock"         # Replace with your DynamoDB table name
     encrypt        = true                           # Enable encryption at rest
@@ -68,7 +68,7 @@ resource "aws_instance" "gensogram_server" {
   vpc_security_group_ids = [aws_security_group.gensogram_sg.id]
 
   tags = {
-    Name = "Kunle-Instance"
+    Name = var.instance_name2
   }
 }
 
@@ -268,4 +268,10 @@ resource "aws_api_gateway_integration_response" "integration_response" {
 output "api_gateway_url" {
   value       = "https://${aws_api_gateway_rest_api.slack_api.id}.execute-api.us-east-1.amazonaws.com/prod/post-to-slack"
   description = "The endpoint URL for posting messages to Slack through API Gateway"
+}
+
+module "ec2_instance" {
+  source  = "../Terraform/module/ec2_instance" 
+
+   
 }
